@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/PROTOTYPE/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f5f7" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="description" content="Gerador e fila de QR Codes para bipagem de códigos de rastreio." />
+    <title>PONTO DE COLETA — QR</title>
+    <script type="module" crossorigin src="/PROTOTYPE/assets/index-Dp9ZwJus.js"></script>
+    <link rel="stylesheet" crossorigin href="/PROTOTYPE/assets/index-jKEZZow1.css">
+  </head>
+  <body style="margin: 0; background: #f4f5f7; color: #121417; font-family: 'Segoe UI', sans-serif">
+    <div id="root">
+      <p id="boot" style="margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; text-align: center">
+        Abrindo o Ponto de Coleta…
+      </p>
+    </div>
+    <script>
+      function showBootError() {
+        var el = document.getElementById('boot')
+        if (!el) return
+        el.textContent =
+          location.protocol === 'file:'
+            ? 'Este arquivo não abre direto. Com o servidor ligado, use http://localhost:5173/.'
+            : 'Não foi possível carregar a aplicação. Recarregue a página. Se continuar vazia, abra http://localhost:5173/.'
+      }
+      window.addEventListener(
+        'error',
+        function (event) {
+          var el = document.getElementById('boot')
+          if (!el) return
+          if (event.target && event.target.tagName === 'SCRIPT') showBootError()
+          else if (event.message) el.textContent = 'Não foi possível abrir a ferramenta. Recarregue a página.'
+        },
+        true,
+      )
+    </script>
+    <noscript>Ative o JavaScript para usar o Ponto de Coleta.</noscript>
+  </body>
+</html>
